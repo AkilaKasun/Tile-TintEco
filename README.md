@@ -1,2 +1,3 @@
 # Tile-TintEco
-a website for calculate tile count,wastage and budget for floor,suggest wall paont colors using tile color ,select best tile material using users location and enviroment tempreture 
+A web applications to calculate accuratly tile count, wastage and budget for floors, suggest paint colors based on tile color and suggest  tile material using users locations
+(Frontend: React,, Java Script ,   Backend: Node js, Express js ,python  ) 
