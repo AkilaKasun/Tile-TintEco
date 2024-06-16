@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tile Wastage Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a1a1a1;
+            margin: 0;
+            padding: 20px;
+            justify-content: center;
+            /* Center content horizontally */
+            align-items: center;
+            /* Center content vertically */
+            height: 100vh;
+            /* Full viewport height */
+            text-align: center;
+
+        }
+
+        h1 {
+            color: #030303;
+        }
+
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            /* Stack elements vertically */
+            align-items: center;
+            /* Center-align children elements */
+            margin: auto;
+            /* Centers the form horizontally */
+
+        }
+
+        input[type="number"],
+        input[type="submit"],
+        select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(248, 173, 10);
+            border: 2px solid rgb(248, 173, 10) !important;
+            color: white !important;
+            font-weight: bold !important;
+            margin-top: 5vh;
+            /* Adjust as needed */
+            padding: 12px 24px !important;
+            /* Increase padding to make the button bigger */
+            border-radius: 25px !important;
+            /* Round edges. Adjust value to increase/decrease roundness */
+            font-size: 18px !important;
+            /* Optional: Adjust font size as needed */
+            cursor: pointer !important;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(248, 173, 10);
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        p {
+            color: #777;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .inputb {
+            /* Styles specific to input boxes with class 'inputb' */
+            padding: 10px;
+            /* Slightly larger padding for bigger appearance */
+            border-radius: 8px;
+            /* More pronounced curved edges */
+            width: 40%;
+            /* Adjust width as needed */
+            margin: 5px auto;
+            /* Center align and provide space around */
+            border: 2px solid rgb(248, 173, 10) !important;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tile Wastage Calculator</h1>
+    <form method="post" action="{{ url_for('calculate') }}">
+        <select id="shape_rectangle" name="shape1">
+            <option value="rectangle">Rectangle</option>
+        </select>
+        <label for="num_r">Number of Shapes:</label>
+        <input class="inputb" type="number" id="num_r" name="num_r" min="0" value="0">
+        <br>
+        <select id="shape_triangle" name="shape2">
+            <option value="triangle">Triangle</option>
+        </select>
+        <label for="num_t">Number of Shapes:</label>
+        <input class="inputb" type="number" id="num_t" name="num_t" min="0" value="0">
+        <br>
+        <select id="shape_semicircle" name="shape3">
+            <option value="semicircle">Semicircle</option>
+        </select>
+        <label for="num_s">Number of Shapes:</label>
+        <input class="inputb" type="number" id="num_s" name="num_s" min="0" value="0">
+        <br>
+        <input type="submit" value="Calculate">
+    </form>
+    <br>
+    <form method="post" action="{{ url_for('calculate_wastage') }}">
+        {% if measurementsr %}
+        <h2>Enter rectangle Measurements (in cm):</h2>
+        <!--<form method="post" action="{{ url_for('calculate_wastage') }}">-->
+        {% for i in range(measurementsr|length) %}
+        <h3>Shape {{ i+1 }}:</h3>
+        {% if shaper == 'rectangle' %}
+        <label for="r_length_{{ i }}">Length:</label>
+        <input class="inputb" type="number" id="r_length_{{ i }}" name="r_length_{{ i }}" min="0" step="0.01" value="0"
+            required>
+        <br>
+        <label for="r_width_{{ i }}">Width:</label>
+        <input class="inputb" type="number" id="r_width_{{ i }}" name="r_width_{{ i }}" min="0" step="0.01" value="0"
+            required>
+
+        {% endif %}
+        <br>
+        {% endfor %}
+        <label for="r_tile_length">Tile Length (in cm):</label>
+        <input class="inputb" type="number" id="r_tile_length" name="r_tile_length" min="0" step="0.01" value="0"
+            required>
+        <br>
+        <label for="r_tile_width">Tile Width (in cm):</label>
+        <input class="inputb" type="number" id="r_tile_width" name="r_tile_width" min="0" step="0.01" value="0"
+            required>
+        <br>
+        <label for="r_tile_price">Tile price (in Rs):</label>
+        <input class="inputb" type="number" id="r_tile_price" name="r_tile_price" min="0" step="1" value="0" required>
+        <br>
+        <!--<input type="submit" value="Calculate Wastage">-->
+
+        <!--</form>-->
+        {% endif %}
+        {% if wastage is not none %}
+        <h2>Rectangle Tile Wastage:</h2>
+        <p> No of Tiles : {{ r_num_tiles}} </p>
+        <p>wastage : {{ r_wastage }} square cm</p>
+        <p>tile price : {{ r_price }} </p>
+        {% endif %}
+        <br>
+
+        {% if measurementst %}
+        <h2>Enter triangle Measurements (in cm):</h2>
+        <!--<form method="post" action="{{ url_for('calculate_wastage') }}">-->
+        {% for j in range(measurementst|length) %}
+        <h3>Shape {{ j+1 }}:</h3>
+        {% if shapet == 'triangle' %}
+        <label for="t_base_{{ j }}">Base:</label>
+        <input class="inputb" type="number" id="t_base_{{ j }}" name="t_base_{{ j }}" min="0" step="1" value="0"
+            required>
+        <br>
+        <label for="t_height_{{ j }}">Height:</label>
+        <input class="inputb" type="number" id="t_height_{{ j }}" name="t_height_{{ j }}" min="0" step="1" value="0"
+            required>
+        {% endif %}
+        <br>
+        {% endfor %}
+        <label for="t_tile_length">Tile Length (in cm):</label>
+        <input class="inputb" type="number" id="t_tile_length" name="t_tile_length" min="0" step="1" value="0" required>
+        <br>
+        <label for="t_tile_width">Tile Width (in cm):</label>
+        <input class="inputb" type="number" id="t_tile_width" name="t_tile_width" min="0" step="1" value="0" required>
+        <br>
+        <label for="t_tile_price">Tile price (in Rs):</label>
+        <input class="inputb" type="number" id="t_tile_price" name="t_tile_price" min="0" step="1" value="0" required>
+        <br>
+        <!--<input type="submit" value="Calculate Wastage">-->
+        <!--</form>-->
+        {% endif %}
+        {% if wastage is not none %}
+        <h2>Triangle Tile Wastage:</h2>
+        <p> No of Tiles : {{ t_num_tiles}} </p>
+        <p>wastage : {{ t_wastage }} square cm</p>
+        <p>tile price : {{ t_price }} </p>
+        {% endif %}
+        <br>
+
+
+        {% if measurementss %}
+        <h2>Enter semicircle Measurements (in cm):</h2>
+        <!--<form method='POST' action="{{ url_for('calculate_wastage') }}">-->
+        {% for k in range(measurementss|length) %}
+        <h3>Shape {{ k+1 }}:</h3>
+        {% if shapes == 'semicircle' %}
+        <label for="s_radius_{{ k }}">Radius:</label>
+        <input class="inputb" type="number" id="s_radius_{{ k }}" name="s_radius_{{ k }}" min="0" step="1" value="0"
+            required>
+        {% endif %}
+        <br>
+        {% endfor %}
+        <label for="s_tile_length">Tile Length (in cm):</label>
+        <input class="inputb" type="number" id="s_tile_length" name="s_tile_length" min="0" step="1" value="0" required>
+        <br>
+        <label for="s_tile_width">Tile Width (in cm):</label>
+        <input class="inputb" type="number" id="s_tile_width" name="s_tile_width" min="0" step="1" value="0" required>
+        <br>
+        <label for="s_tile_price">Tile price (in Rs):</label>
+        <input class="inputb" type="number" id="s_tile_price" name="s_tile_price" min="0" step="1" value="0" required>
+        <br>
+        <!--<input type="submit" value="Calculate Wastage">-->
+        <!--</form>-->
+        {% endif %}
+        {% if wastage is not none %}
+        <h2> Semicircle Tile Wastage:</h2>
+        <p> No of Tiles : {{ s_num_tiles}} </p>
+        <p>wastage : {{ s_wastage }} square cm</p>
+        <p>tile price : {{ s_price }} </p>
+        {% endif %}
+
+        <h1 class="waste"> Total Wastage and Tile count:</h1>
+        <p> total no of tiles : {{ total_t}} </p>
+        <p>total wastage : {{ total_w }} square cm</p>
+        <p>total price : {{ total_p }} </p>
+        <input type="submit" value="Calculate Wastage">
+    </form>
+</body>
+
+</html>

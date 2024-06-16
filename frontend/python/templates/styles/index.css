@@ -1,0 +1,43 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Changed background color to black */
+    margin: 0;
+    padding: 20px;
+    color: #fff; /* Set text color to white */
+}
+
+h1 {
+    color: #fff; /* Set title color to white */
+}
+
+form {
+    background-color: #333; /* Darker form background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"], input[type="submit"], select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(248, 173, 10); /* Yellow border for inputs */
+    border-radius: 4px;
+    background-color: #fff; /* Background color for inputs */
+    color: #000; /* Text color for inputs */
+}
+
+input[type="submit"] {
+    background-color: #af914c;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #a09245;
+}
+
+h2, p, label {
+    color: #fff; /* Set text color to white for consistency */
+}

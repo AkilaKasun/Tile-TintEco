@@ -1,0 +1,257 @@
+.backgroundImage {
+  background-size: cover;
+  background-position: center;
+}
+
+.each-slide {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 500px; /* Adjust based on your requirement */
+  background-size: cover;
+  background-position: center;
+}
+.each-slide::before {
+  content: ""; /* Necessary for the pseudo-element to be generated */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.466); /* Semi-transparent black */
+  z-index: 1; /* Ensures it's above the background image but below content */
+}
+.slide-container {
+  width: 100%;
+  height: 500px; /* Adjust the height as needed */
+  overflow: hidden; /* Ensure overflow images are not visible */
+}
+
+.slide-container .each-slide {
+  width: 100%;
+  height: 500px; /* Ensure this matches the height of the slide-container */
+  display: flex;
+  align-items: center; /* Vertically center */
+  justify-content: center; /* Horizontally center */
+  background-size: cover; /* Cover the area of each slide */
+  background-position: center;
+  border: none !important; /* Center the background image */
+}
+
+/* If you're using <img> tags inside your slides and want them to cover the area, ensure they are positioned absolutely within .each-slide */
+.slide-container img {
+  position: absolute;
+  width: 100%;
+  height: 500px; /* Match the height of the slide-container */
+  object-fit: cover; /* Cover the area without losing aspect ratio */
+  top: 0;
+  left: 0;
+}
+
+
+.slide-caption {
+  color: #d6d4d4;
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.922); 
+  padding: 10px; 
+  border-radius: 5px;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 1.8rem;
+}
+
+
+@keyframes slideDownAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -150%); /* Start from above */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%); /* End at center */
+  }
+}
+
+/* Apply the animation to .slide-caption to trigger when it's in view or based on your JS logic */
+.slide-caption {
+  animation: slideDownAnimation 3s ease-out forwards;
+}
+
+.secondimage {
+  position: relative; /* Needed for the positioning of the pseudo-element */
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden; /* Ensures no overflow from the pseudo-element */
+}
+
+.secondimage::before {
+  content: ""; /* Necessary for the pseudo-element to be generated */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.678); /* Semi-transparent black */
+  z-index: 1; /* Ensures it's above the background image but below content */
+}
+/* Assuming your cards are directly within a container that needs this styling */
+.cardsContainer {
+  position: relative;
+  z-index: 2; /* Higher than the overlay's z-index */
+  margin-top: 30px;
+
+}
+
+
+.topic {
+  font-size: 36px; /* Larger font size for the topic */
+  color: rgb(219, 219, 219); /* Adjust the color as needed */
+  margin-bottom: 20px; /* Spacing between the topic and the paragraph */
+  border-color: black;
+  
+}
+
+.paragraph {
+  font-size: 18px; /* Adjust the font size as needed */
+  color: rgb(235, 165, 26); /* Adjust the color as needed */
+  margin-bottom: 20px; /* Spacing between the paragraph and the button */
+  max-width: 600px; /* Adjust the width as needed */
+  margin-left: auto; /* Center align the paragraph if needed */
+  margin-right: auto; /* Center align the paragraph if needed */
+  
+}
+
+.content {
+  position: absolute;
+  bottom: 100px; /* Adjust this value to position the content lower */
+  left: 20%; /* Center horizontally */
+  transform: translateX(-50%,50%); /* Adjust horizontal centering */
+  z-index: 2;
+  
+}
+
+/* Animation for cards coming from the top */
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for content coming from the bottom */
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Increase this value to make the ending position lower */
+    opacity: 1;
+  }
+}
+
+
+.cards {
+  animation: slideInFromTop 2s ease-out forwards;
+}
+
+.content {
+  animation: slideInFromBottom 2s ease-out forwards;
+}
+
+.productimage {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px; /* This will give you rounded corners */
+  /* add other styles if necessary */
+}
+
+.explorecontent {
+
+  font-size: 32px; /* Larger font size for the topic */
+  color: rgb(112, 111, 111); /* Adjust the color as needed */
+  margin-bottom: 20px; /* Spacing between the topic and the paragraph */
+  border-color: rgb(12, 12, 12);
+  margin-left: 28%;
+}
+
+.exploreparagraph {
+  font-size: 25px; /* Adjust the font size as needed */
+  color: rgb(235, 165, 26); /* Adjust the color as needed */
+  margin-bottom: 5px; /* Spacing between the paragraph and the button */
+  max-width: 600px; /* Adjust the width as needed */
+  margin-left: auto; /* Center align the paragraph if needed */
+  margin-right: auto; /* Center align the paragraph if needed */
+  
+}
+
+.badge-container {
+  display: flex;
+  gap: 20px; /* Adjust the space between badges */
+  margin-left: 14%;
+}
+
+
+.Button {
+  border: 2px solid  rgb(120, 120, 120)!important;
+  color: rgb(65, 65, 65) !important;
+  font-weight: bold !important;
+
+  padding: 12px 24px !important; /* Increase padding to make the button bigger */
+  border-radius: 25px !important; /* Round edges. Adjust value to increase/decrease roundness */
+  font-size: 18px !important; /* Optional: Adjust font size as needed */
+  cursor: pointer !important; 
+ 
+}
+
+.Button:hover
+{
+ 
+  color: hsl(41, 94%, 51%) !important;
+  border: 2px solid  rgb(246, 191, 39)!important;
+
+}
+
+.cardHover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.cardHover:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+.menuDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.menuDropdown .dropdownContent {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.menuDropdown .dropdownContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menuDropdown .dropdownContent a:hover {
+  background-color: #f1f1f1;
+}

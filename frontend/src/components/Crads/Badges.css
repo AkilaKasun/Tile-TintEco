@@ -1,0 +1,19 @@
+.badge {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center-align items horizontally */
+  text-align: center; /* Center-align text */
+  gap: 5px; /* Space between the image and text */
+}
+
+.badge-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Make it round */
+  object-fit: cover; /* Keep the aspect ratio */
+}
+
+.badge-text {
+  font-weight: bold;
+  font-size: 14px; /* Adjust text size as needed */
+}

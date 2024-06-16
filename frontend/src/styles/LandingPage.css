@@ -1,0 +1,71 @@
+/* LandingPage.css */
+.landingPage {
+    position: relative; /* Needed for the positioning of the pseudo-element */
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Ensures no overflow from the pseudo-element */
+  }
+  
+  .landingPage::before {
+    content: ""; /* Necessary for the pseudo-element to be generated */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.829); /* Semi-transparent black */
+    z-index: 1; /* Ensures it's above the background image but below content */
+  }
+  
+  .fullHeightGrid {
+    position: relative; /* Ensures the grid content is positioned correctly */
+    height: 100%;
+    z-index: 2; /* Ensures grid content is above the overlay */
+  }
+
+  .spacer {
+    flex: 1; /* This makes the spacer flexible, taking up available space */
+    min-height: 30vh; /* Optional: adjust this value to control how much the button is pushed down */
+  }
+  
+  /* Additional button styling */
+  .yellowBorderButton {
+    border: 2px solid  rgb(248, 173, 10)!important;
+    color: white !important;
+    font-weight: bold !important;
+    margin-top: 80vh; /* Adjust as needed */
+    padding: 12px 24px !important; /* Increase padding to make the button bigger */
+    border-radius: 25px !important; /* Round edges. Adjust value to increase/decrease roundness */
+    font-size: 18px !important; /* Optional: Adjust font size as needed */
+    cursor: pointer !important; 
+   
+  }
+
+  .yellowBorderButton:hover
+  {
+   
+    color: rgb(248, 173, 10) !important;
+
+  }
+ 
+  .topicL {
+    font-size: 36px; /* Larger font size for the topic */
+    color: rgb(219, 219, 219); /* Adjust the color as needed */
+    margin-bottom: 20px; /* Spacing between the topic and the paragraph */
+    border-color: black;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7); 
+  }
+  
+  .paragraphL {
+    font-size: 18px; /* Adjust the font size as needed */
+    color: rgb(235, 165, 26); /* Adjust the color as needed */
+    margin-bottom: 20px; /* Spacing between the paragraph and the button */
+    max-width: 600px; /* Adjust the width as needed */
+    margin-left: auto; /* Center align the paragraph if needed */
+    margin-right: auto; /* Center align the paragraph if needed */
+  }
+  
+  
